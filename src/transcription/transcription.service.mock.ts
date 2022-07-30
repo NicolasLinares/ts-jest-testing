@@ -1,7 +1,7 @@
 
 namespace SYSTEM {
     
-    export class TranscriptorServiceMock implements TranscriptorServiceInterface {
+    export class TranscriptionServiceMock implements TranscriptionServiceInterface {
 
         defaultTranscription : string = "Se detecta fractura en la costilla derecha mediante la readiografía"
 

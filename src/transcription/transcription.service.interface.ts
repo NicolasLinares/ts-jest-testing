@@ -1,7 +1,7 @@
 
 namespace SYSTEM {
 
-    export interface TranscriptorServiceInterface {
+    export interface TranscriptionServiceInterface {
         transcribe(pathFile: string): string
     }
 }

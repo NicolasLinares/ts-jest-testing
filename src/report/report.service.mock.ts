@@ -1,9 +1,10 @@
 namespace SYSTEM {
 
     export interface ReportService {
-        addReport(dto: CreateReportDto): void
-        removeReportById(id: ReportModel['id']): void
-        updateReport(id: ReportModel['id'], changes: UpdateReportDto): void
+        addReport(dto: CreateReportDto): ReportModel['id']
+        removeReportById(id: ReportModel['id']): boolean
+        updateReportById(id: ReportModel['id'], changes: UpdateReportDto): ReportModel | undefined
+        getReportById(id: ReportModel['id']): ReportModel | undefined
         findReport(dto: FindReportDto): ReportModel | undefined
     }
 }

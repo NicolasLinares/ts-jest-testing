@@ -1,27 +1,40 @@
 # Testing project with Jest
 
-The project flow starts sending a new audio file to the transcription service to obtain its transcript. The result is saved in the storage system.
+We have an audio transcription system that receives the audio files and stores the result in a database.
+
+The project flow starts sending an audio file to the transcription service to obtain its transcript. The result is saved in the storage system.
 
 ## Entities
 
-* **Transcription service**. Receives an audio file in wav format containing the medical report and returns its transcript.
+* **Report**. A report has the following fields:
 
-* **Medical report**.We have to storage the following fields in a database:
-    - id
-    - specialty
-    - transcription
-    - userCorrection
-    - createdAt
-    - updatedAt
-    - userId
-    - language
+|  Field         |   Type  |
+|----------------|---------|
+| id             | string  |
+| specialty      | string  |
+| transcription  | string  |
+| userCorrection | string  |
+| createdAt      | Date    |
+| updatedAt      | Date    |
+| userId         | string  |
+| language       | string  |
 
-* **Report service**. The service has the following tasks:
-    - Save medical report
-    - Get medical report by id
-    - Get all medical reports by specialty id
-    - Delete a medical report by id
-    - Get all medical reports by user id
+* **Report service**. Service in charge of the report management. The service has the following tasks:
+
+|      Task      | Parameters  | Returns |
+|----------------|-------------|---------|
+| Save report    | report      | id      |
+| Remove report  | id          | boolean |
+| Update report  | id, changes | report  |
+| Get report     | id          | report  |
+| Find report    | id          | report  |
+
+
+* **Transcription service**. Service in charge of the audio transcription. Receives the path of the audio file and returns its transcription. The service has the following tasks:
+
+|      Task         | Parameters       | Returns |
+|-------------------|------------------|---------|
+| Transcribe audio  | audio file path  | string  |
 
 
 # Unit tests

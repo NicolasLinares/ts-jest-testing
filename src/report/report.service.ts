@@ -8,7 +8,7 @@ namespace SYSTEM {
 
         reports: ReportModel[] = []
 
-        addReport(dto: CreateReportDto): void {
+        addReport(dto: CreateReportDto): ReportModel["id"] {
             const report: ReportModel = {
                 id: faker.datatype.uuid(),
                 ownerId: faker.datatype.uuid(),
@@ -17,19 +17,40 @@ namespace SYSTEM {
                 ...dto
             }
             this.reports.push(report)
+
+            return report.id
         }
 
-        removeReportById(id: ReportModel['id']): void {
+        removeReportById(id: ReportModel['id']): boolean {
+            if (this.reports.findIndex(rep => rep.id === id) === -1) {
+                return false
+            }
+
             this.reports = this.reports.filter(report => report.id !== id)
+            return true
         }
 
-        updateReport(id: ReportModel['id'], changes: UpdateReportDto): void {
+        updateReportById(id: ReportModel['id'], changes: UpdateReportDto): ReportModel | undefined  {
             const index = this.reports.findIndex(report => report.id === id)
+            if (index === -1) {
+                return undefined
+            }
+
             const oldReport = this.reports[index]
             this.reports[index] = {
                 ...oldReport,
                 ...changes
             }
+
+            return this.reports[index];
+        }
+
+        getReportById(id: ReportModel['id']): ReportModel | undefined {
+            const index = this.reports.findIndex(report => report.id === id)
+            if (index === -1) {
+                return undefined
+            }
+            return this.reports[index]
         }
 
         findReport(dto: FindReportDto): ReportModel | undefined {
