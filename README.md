@@ -2,6 +2,16 @@
 
 The idea of the project is to simulate a report handler that abstracts the persistence logic, with the aim of testing it with the [Jest Framework](https://jestjs.io/es-ES/).
 
+Install dependencies:
+```shell
+npm install
+```
+
+Run the tests:
+```shell
+npm run test
+```
+
 ## Entities
 
 * **Report**. A report has the following fields:
