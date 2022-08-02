@@ -1,12 +1,11 @@
+import { BaseModel } from "./base.model"
+import { SpecialtyEnum } from "../enums/specialty.enum"
 
-namespace SYSTEM {
-
-    export interface ReportModel extends BaseModel {
-        ownerId: string | number
-        transcription: string
-        userCorrection: string
-        lang: LangEnum
-        shared: boolean
-        specialty: MedicalSpecialtyEnum | LegalSpecialtyEnum
-    }
+export interface ReportModel extends BaseModel {
+    ownerId: string
+    transcription: string
+    userCorrection: string | undefined
+    lang: string
+    shared: boolean
+    specialty: SpecialtyEnum
 }

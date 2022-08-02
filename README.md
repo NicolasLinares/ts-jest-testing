@@ -1,40 +1,47 @@
-# Testing project with Jest
+# Little testing project with Jest
 
-We have an audio transcription system that receives the audio files and stores the result in a database.
-
-The project flow starts sending an audio file to the transcription service to obtain its transcript. The result is saved in the storage system.
+The idea of the project is to simulate a report handler that abstracts the persistence logic, with the aim of testing it with the [Jest Framework](https://jestjs.io/es-ES/).
 
 ## Entities
 
 * **Report**. A report has the following fields:
 
-|  Field         |   Type  |
-|----------------|---------|
-| id             | string  |
-| specialty      | string  |
-| transcription  | string  |
-| userCorrection | string  |
-| createdAt      | Date    |
-| updatedAt      | Date    |
-| userId         | string  |
-| language       | string  |
+    |  Field         |   Type  |
+    |----------------|---------|
+    | id             | string  |
+    | createdAt      | Date    |
+    | updatedAt      | Date    |
+    | ownerId        | string  |
+    | transcription  | string  |
+    | userCorrection | string  |
+    | shared         | boolean |
+    | language       | string  |
+    | specialty      | string  |
 
-* **Report service**. Service in charge of the report management. The service has the following tasks:
+* **Report Manager**. Service in charge of the report management. The manager has the following tasks:
 
-|      Task      | Parameters  | Returns |
-|----------------|-------------|---------|
-| Save report    | report      | id      |
-| Remove report  | id          | boolean |
-| Update report  | id, changes | report  |
-| Get report     | id          | report  |
-| Find report    | id          | report  |
-
-
-* **Transcription service**. Service in charge of the audio transcription. Receives the path of the audio file and returns its transcription. The service has the following tasks:
-
-|      Task         | Parameters       | Returns |
-|-------------------|------------------|---------|
-| Transcribe audio  | audio file path  | string  |
+    |      Task        | Parameters  | Returns      |
+    |------------------|-------------|--------------|
+    | Add report       | report      | report       |
+    | Remove report    | id          | report       |
+    | Get report       | id          | report       |
+    | Get all reports  | -           | report list  |
+    | ...              | ...         | ...          |
 
 
-# Unit tests
+* **Report Persistance**. Simulate a database service.
+
+    |      Task        | Parameters  | Returns      |
+    |------------------|-------------|--------------|
+    | Save report      | report      | boolean      |
+    | Remove report    | id          | boolean      |
+    | Get report       | id          | report       |
+    | Get all reports  | -           | report list  |
+    | ...              | ...         | ...          |
+
+
+# Unit Tests
+
+Testing of the behaviour of the Report Manager when add, remove or get any report.
+
+With the unit tests, new functionalities could be added to the report manager or modify the persistence service, ensuring the correct functioning of the system.
